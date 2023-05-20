@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -66,7 +66,7 @@ const Login = ({ setLoginState, userInfo }) => {
             </button>
             <p>또는</p>
             <p>Facebook으로 로그인</p>
-            <p>비밀번호를 잊어셨나요?</p>
+            <p>비밀번호를 잊으셨나요?</p>
           </LoginBoxSection1>
           <LoginBoxSection2>
             <p>계정이 없으신가요? </p>
