@@ -6,6 +6,7 @@
       "number": "0101111",
       "email": "ham@ham.com",
       "password": "ham1234",
+      "username": "ham",
       "Posts": 100,
       "Follow": 123456,
       "Following": 456
@@ -16,6 +17,7 @@
       "number": "0102222",
       "email": "oh@oh.com",
       "password": "oh1234",
+      "username": "oh",
       "posts": 100,
       "follow": 123456,
       "following": 456
@@ -26,6 +28,7 @@
       "number": "0103333",
       "email": "park@park.com",
       "password": "park1234",
+      "username": "park",
       "posts": 100,
       "follow": 123456,
       "following": 456
@@ -36,6 +39,7 @@
       "number": "0105555",
       "email": "ji@ji.com",
       "password": "ji1234",
+      "username": "ji",
       "posts": 100,
       "follow": 123456,
       "following": 456
@@ -46,6 +50,7 @@
       "number": "0106666",
       "email": "yun@yun.com",
       "password": "yun1234",
+      "username": "yun",
       "posts": 100,
       "follow": 123456,
       "following": 456

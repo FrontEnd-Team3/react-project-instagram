@@ -22,22 +22,25 @@ const Login = ({ setLoginState, userInfo }) => {
   //input값 state에 담기
 
   const handleLogin = () => {
-    const CorrectUserId = userInfo.find((user) => user.id === firstInputValue);
-    const CorrectUserNumber = userInfo.find(
+    const CorrectUserId = userInfo.findIndex(
+      (user) => user.id === firstInputValue
+    );
+    const CorrectUserNumber = userInfo.findIndex(
       (user) => user.number === firstInputValue
     );
-    const CorrectUserEmail = userInfo.find(
+    const CorrectUserEmail = userInfo.findIndex(
       (user) => user.email === firstInputValue
     );
-    const CorrectUserPassword = userInfo.find(
+    const CorrectUserPassword = userInfo.findIndex(
       (user) => user.password === passwordInputValue
     );
-
     if (
-      (CorrectUserId || CorrectUserNumber || CorrectUserEmail) &&
-      CorrectUserPassword
+      (CorrectUserId === CorrectUserPassword ||
+        CorrectUserNumber === CorrectUserPassword ||
+        CorrectUserEmail === CorrectUserPassword) &&
+      CorrectUserPassword != -1
     ) {
-      setLoginState(true);
+      setLoginState(userInfo[CorrectUserPassword]);
     } else {
       alert("아이디와 비밀번호를 확인해주세요");
     }

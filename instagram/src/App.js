@@ -12,7 +12,7 @@ function App() {
   const [userInfo, setUserInfo] = useState(userInfos.UserInfos);
   //JSON데이터 가져와서 useInfo state에 저장
 
-  const [loginState, setLoginState] = useState(false);
+  const [loginState, setLoginState] = useState(null);
   return (
     <Router>
       <Routes>
@@ -20,14 +20,17 @@ function App() {
           path="/"
           element={
             loginState ? (
-              <Layout />
+              <Layout username={loginState.username} />
             ) : (
               <Login setLoginState={setLoginState} userInfo={userInfo} />
             )
           }
         >
           <Route index element={<Main />}></Route>
-          <Route path=":username" element={<Profile />}></Route>
+          <Route
+            path=":username"
+            element={<Profile profileInfo={loginState} />}
+          ></Route>
         </Route>
         <Route
           path="/emailsignup"
