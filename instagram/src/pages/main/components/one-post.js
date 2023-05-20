@@ -82,7 +82,7 @@ const OnePost = (props) => {
   return (
     <div>
       <S.PostTop>
-        <S.BasicProfile src="img/basic.jpg" />
+        <S.BasicProfile src={post.profileImage} />
         <div>
           <S.PostUser>{post.user}</S.PostUser> <span>{post.postDate} </span>{" "}
           <span>{post.postLocation}</span>
@@ -176,6 +176,7 @@ const BasicProfile = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  border-radius: 50%;
 `;
 
 const DetailBox = styled.span`

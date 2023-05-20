@@ -11,15 +11,18 @@
   "OtherUsers": [
     {
       "Name": "hello_123",
-      "Follower": "aaa111"
+      "Follower": "aaa111",
+      "profileImage": ["img/friend_1.jpg"]
     },
     {
       "Name": "hi._.hi",
-      "Follower": "bbb222"
+      "Follower": "bbb222",
+      "profileImage": ["img/friend_2.jpg"]
     },
     {
       "Name": ":)ImUser",
-      "Follower": "ccc333"
+      "Follower": "ccc333",
+      "profileImage": ["img/friend_3.jpg"]
     }
   ]
 }
