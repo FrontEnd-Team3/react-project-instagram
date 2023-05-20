@@ -3,9 +3,9 @@ import "./App.css";
 import Layout from "./components/layout/layout";
 import Login from "./pages/main/components/login";
 import Main from "./pages/main/index";
-import Profile from "./components/profile/profile";
 import Signup from "./pages/main/components/signup";
 import { useState } from "react";
+import Profile from "./pages/profile/profile";
 
 function App() {
   const userInfos = require("./data/user-login-info.json");
