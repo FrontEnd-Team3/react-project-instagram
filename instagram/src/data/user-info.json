@@ -7,5 +7,19 @@
       "Follow": 123456,
       "Following": 456
     }
+  ],
+  "OtherUsers": [
+    {
+      "Name": "hello_123",
+      "Follower": "aaa111"
+    },
+    {
+      "Name": "hi._.hi",
+      "Follower": "bbb222"
+    },
+    {
+      "Name": ":)ImUser",
+      "Follower": "ccc333"
+    }
   ]
 }
