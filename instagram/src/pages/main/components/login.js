@@ -6,9 +6,8 @@ import {
   useLoginAndUserStore,
 } from "../../../context/login-and-user-context";
 
-const Login = ({ setLoginState, userInfo }) => {
+const Login = ({ setLoginState }) => {
   const navigate = useNavigate();
-  console.log(userInfo);
 
   const [firstInputValue, setFirstInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");

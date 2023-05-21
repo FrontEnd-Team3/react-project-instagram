@@ -7,7 +7,7 @@ import {
 } from "../../../context/login-and-user-context";
 const initialUserList = require("../../../data/user-login-info.json").UserInfos;
 
-const Signup = ({ userInfo, setUserInfo }) => {
+const Signup = () => {
   const navigate = useNavigate();
   const [newInfoNumber, setNewInfoNumber] = useState("");
   const [newInfoEmail, setNewInfoEmail] = useState("");

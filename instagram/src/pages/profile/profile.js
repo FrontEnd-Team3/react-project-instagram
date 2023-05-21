@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import userInfo from "../../data/user-info.json";
+import { useLoginAndUserStore } from "../../context/login-and-user-context";
+import postList from "../../data/post-list.json";
+import SquarePostItem from "./components/square-post-item";
 /**
  *
  * @TODO S 객체 만들기
  */
-const Profile = ({ profileInfo }) => {
+const Profile = () => {
+  const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
   const [navState, setNavState] = useState(0);
-  const username = useParams().username;
-  const UserObjectTemp = userInfo.Users.filter(
-    (user) => user.Username === username
-  );
-  if (UserObjectTemp.length === 0) return <p>데이터가 잘못되었습니다.</p>;
-  const UserObject = UserObjectTemp[0];
+  const currUser = loginAndUser.currUser;
+  console.log();
+  if (currUser === null || Object.keys(currUser).length === 0)
+    return <p>데이터가 잘못되었습니다.</p>;
+
   return (
     <ProfileMain>
       <ProfileContainer>
@@ -21,19 +22,19 @@ const Profile = ({ profileInfo }) => {
           <ProfileImg src="img/default-profile.jpg" alt="" width="150px" />
         </div>
         <InfoContainer>
-          <h2>{UserObject.Username}</h2>
+          <h2>{currUser.id}</h2>
           <Numbers>
             <div>
-              게시물 <strong>{UserObject.Posts}</strong>
+              게시물 <strong>{currUser.posts}</strong>
             </div>
             <div>
-              팔로워 <strong>{UserObject.Follow}</strong>
+              팔로워 <strong>{currUser.follow}</strong>
             </div>
             <div>
-              팔로우 <strong>{UserObject.Following}</strong>
+              팔로우 <strong>{currUser.following}</strong>
             </div>
           </Numbers>
-          <h4>{UserObject.Name}</h4>
+          <h4>{currUser.name}</h4>
         </InfoContainer>
       </ProfileContainer>
       <PostsNavContainer>
@@ -58,12 +59,9 @@ const Profile = ({ profileInfo }) => {
       </PostsNavContainer>
       <ProfilePostsContainer>
         <PostImg src="img/post-placeholder.jpg" alt="" />
-        <PostImg src="img/post-placeholder.jpg" alt="" />
-        <PostImg src="img/post-placeholder.jpg" alt="" />
-        <PostImg src="img/post-placeholder.jpg" alt="" />
-        <PostImg src="img/post-placeholder.jpg" alt="" />
-        <PostImg src="img/post-placeholder.jpg" alt="" />
-        <PostImg src="img/post-placeholder.jpg" alt="" />
+        {/* {postList.posts.map((postInfo) => (
+          <SquarePostItem postInfo={postInfo}></SquarePostItem>
+        ))} */}
       </ProfilePostsContainer>
     </ProfileMain>
   );

@@ -10,9 +10,12 @@ import {
   faHeart,
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLoginAndUserStore } from "../../context/login-and-user-context";
 
 const SideNav = () => {
   const navigate = useNavigate();
+
+  const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
   return (
     <>
       <S.NavUl>
@@ -46,7 +49,7 @@ const SideNav = () => {
           <FontAwesomeIcon icon={faSquarePlus} />
           만들기
         </li>
-        <li onClick={() => navigate("/human")}>
+        <li onClick={() => navigate(`/${loginAndUser.currUser.id}`)}>
           <S.ProfileImage src="img/profileImage.jpg" />
           프로필
         </li>
