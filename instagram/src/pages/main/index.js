@@ -3,13 +3,16 @@ import RecommendUsers from "./components/recommend-users";
 
 import styled from "styled-components";
 import Story from "./components/story";
+import DetailModal from "./components/detailModal";
 
 const Main = () => {
   return (
     <>
+      <DetailModal />
       <S.Container>
         <S.Contents>
-          <Story /> <PostList />
+          <Story />
+          <PostList />
         </S.Contents>
         <S.Footer>
           <RecommendUsers />

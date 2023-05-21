@@ -3,6 +3,7 @@
     {
       "id": 1,
       "user": "aaa111",
+      "profileImage": "img/user/user_1.jpg",
       "postDate": "2023.05.18",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/1.jpg", "img/2.jpg", "img/3.jpg"],
@@ -29,6 +30,8 @@
     {
       "id": 2,
       "user": "bbb222",
+      "profileImage": "img/user/user_2.jpg",
+
       "postDate": "2023.05.16",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/4.jpg", "img/5.jpg", "img/6.jpg"],
@@ -55,6 +58,8 @@
     {
       "id": 3,
       "user": "ccc333",
+      "profileImage": "img/user/user_3.jpg",
+
       "postDate": "2023.05.14",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/7.jpg", "img/8.jpg"],
@@ -76,6 +81,8 @@
     {
       "id": 4,
       "user": "ddd444",
+      "profileImage": "img/user/user_4.jpg",
+
       "postDate": "2023.05.16",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/9.jpg", "img/10.jpg"],
@@ -97,6 +104,8 @@
     {
       "id": 5,
       "user": "aaa111",
+      "profileImage": "img/user/user_5.jpg",
+
       "postDate": "2023.05.18",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/1.jpg", "img/2.jpg", "img/3.jpg"],
@@ -123,6 +132,8 @@
     {
       "id": 6,
       "user": "bbb222",
+      "profileImage": "img/user/user_6.jpg",
+
       "postDate": "2023.05.16",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/4.jpg", "img/5.jpg", "img/6.jpg"],
@@ -149,6 +160,8 @@
     {
       "id": 7,
       "user": "ccc333",
+      "profileImage": "img/user/user_7.jpg",
+
       "postDate": "2023.05.14",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/7.jpg", "img/8.jpg"],
@@ -170,6 +183,8 @@
     {
       "id": 8,
       "user": "ddd444",
+      "profileImage": "img/user/user_8.jpg",
+
       "postDate": "2023.05.16",
       "postLocation": "Seoul, Korea",
       "postImage": ["img/9.jpg", "img/10.jpg"],
