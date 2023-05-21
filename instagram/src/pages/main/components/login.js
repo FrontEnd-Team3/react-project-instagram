@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import {
+  LOGIN_ATTEMPT,
+  useLoginAndUserStore,
+} from "../../../context/login-and-user-context";
 
 const Login = ({ setLoginState, userInfo }) => {
   const navigate = useNavigate();
@@ -21,30 +25,25 @@ const Login = ({ setLoginState, userInfo }) => {
   };
   //input값 state에 담기
 
+  const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
+
   const handleLogin = () => {
-    const CorrectUserId = userInfo.findIndex(
-      (user) => user.id === firstInputValue
+    loginAndUserDispatch(
+      LOGIN_ATTEMPT({ firstInputValue, passwordInputValue })
     );
-    const CorrectUserNumber = userInfo.findIndex(
-      (user) => user.number === firstInputValue
-    );
-    const CorrectUserEmail = userInfo.findIndex(
-      (user) => user.email === firstInputValue
-    );
-    const CorrectUserPassword = userInfo.findIndex(
-      (user) => user.password === passwordInputValue
-    );
+  };
+  useEffect(() => {
+    if (loginAndUser.currUser) {
+      setLoginState(true);
+    }
+    // 빈 객체라면. 로그인 실패 시 빈 객체가 됨.
     if (
-      (CorrectUserId === CorrectUserPassword ||
-        CorrectUserNumber === CorrectUserPassword ||
-        CorrectUserEmail === CorrectUserPassword) &&
-      CorrectUserPassword != -1
+      loginAndUser.currUser !== null &&
+      Object.keys(loginAndUser.currUser).length === 0
     ) {
-      setLoginState(userInfo[CorrectUserPassword]);
-    } else {
       alert("아이디와 비밀번호를 확인해주세요");
     }
-  };
+  }, [loginAndUser.currUser]);
 
   return (
     <Main>

@@ -6,6 +6,7 @@ import Main from "./pages/main/index";
 import Signup from "./pages/main/components/signup";
 import { useState } from "react";
 import Profile from "./pages/profile/profile";
+import LoginAndUserStoreProvider from "./context/login-and-user-context";
 
 function App() {
   const userInfos = require("./data/user-login-info.json");
@@ -14,30 +15,33 @@ function App() {
 
   const [loginState, setLoginState] = useState(null);
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            loginState ? (
-              <Layout username={loginState.username} />
-            ) : (
-              <Login setLoginState={setLoginState} userInfo={userInfo} />
-            )
-          }
-        >
-          <Route index element={<Main />}></Route>
+    <LoginAndUserStoreProvider>
+      <Router>
+        <Routes>
           <Route
-            path=":username"
-            element={<Profile profileInfo={loginState} />}
-          ></Route>
-        </Route>
-        <Route
-          path="/emailsignup"
-          element={<Signup userInfo={userInfo} setUserInfo={setUserInfo} />}
-        />
-      </Routes>
-    </Router>
+            path="/"
+            element={
+              loginState ? (
+                <Layout username={loginState.username} />
+              ) : (
+                // 나중에 여기에 있는거 지우기! TODO
+                <Login setLoginState={setLoginState} userInfo={userInfo} />
+              )
+            }
+          >
+            <Route index element={<Main />}></Route>
+            <Route
+              path=":username"
+              element={<Profile profileInfo={loginState} />}
+            ></Route>
+          </Route>
+          <Route
+            path="/emailsignup"
+            element={<Signup userInfo={userInfo} setUserInfo={setUserInfo} />}
+          />
+        </Routes>
+      </Router>
+    </LoginAndUserStoreProvider>
   );
 }
 
