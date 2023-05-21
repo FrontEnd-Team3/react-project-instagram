@@ -3,6 +3,8 @@ import styled from "styled-components";
 const RecommendedUser = (props) => {
   const { account } = props;
   const [isFollow, setIsFollow] = useState(false);
+  const IMAGEURL = account.profileImage;
+  console.log(IMAGEURL);
 
   const handleFollowing = () => {
     setIsFollow((prev) => !prev);
@@ -11,7 +13,7 @@ const RecommendedUser = (props) => {
   return (
     <div>
       <S.Account>
-        <S.BasicProfile src="img/basic.jpg" />
+        <S.BasicProfile alt="" src={IMAGEURL} />
         <S.AccountInfo>
           <S.UserName>{account.Name}</S.UserName>
           <S.AccountText>{account.Follower}님이 팔로우합니다</S.AccountText>
@@ -55,6 +57,7 @@ const BasicProfile = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  border-radius: 50%;
 `;
 
 const FollowButton = styled.button`
