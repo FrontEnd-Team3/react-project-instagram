@@ -6,9 +6,9 @@
       "number": "0101111",
       "email": "ham@ham.com",
       "password": "ham1234",
-      "Posts": 100,
-      "Follow": 123456,
-      "Following": 456
+      "posts": 100,
+      "follow": 123456,
+      "following": 456
     },
     {
       "name": "오현우",

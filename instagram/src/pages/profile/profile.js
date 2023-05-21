@@ -2,8 +2,11 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import userInfo from "../../data/user-info.json";
-
-const Profile = () => {
+/**
+ *
+ * @TODO S 객체 만들기
+ */
+const Profile = ({ profileInfo }) => {
   const [navState, setNavState] = useState(0);
   const username = useParams().username;
   const UserObjectTemp = userInfo.Users.filter(

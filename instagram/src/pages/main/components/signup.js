@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import {
+  useLoginAndUserStore,
+  USER_ADD,
+} from "../../../context/login-and-user-context";
+const initialUserList = require("../../../data/user-login-info.json").UserInfos;
 
 const Signup = ({ userInfo, setUserInfo }) => {
   const navigate = useNavigate();
@@ -9,6 +14,8 @@ const Signup = ({ userInfo, setUserInfo }) => {
   const [newInfoName, setNewInfoName] = useState("");
   const [newInfoId, setNewInfoId] = useState("");
   const [newInfoPassword, setNewInfoPassword] = useState("");
+
+  const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
 
   const handleNewInfo = (event) => {
     if (event.target.name === "number") {
@@ -84,11 +91,17 @@ const Signup = ({ userInfo, setUserInfo }) => {
         email: newInfoEmail,
         password: newInfoPassword,
       };
-      setUserInfo([...userInfo, newUser]);
-      console.log(userInfo);
+      loginAndUserDispatch(USER_ADD(newUser));
+      console.log(loginAndUser.userList);
+      alert("환영합니다. 다시 메인 페이지로 돌아가서 완료해 주세요.");
     }
   };
-
+  // 길어지면 redirect
+  useEffect(() => {
+    if (loginAndUser.userList.length > initialUserList.length) {
+      navigate("/");
+    }
+  }, [loginAndUser.userList]);
   return (
     <Main>
       <MainBox>
@@ -131,7 +144,7 @@ const Signup = ({ userInfo, setUserInfo }) => {
             <p>계정이 있으신가요? </p>
             <SignupP
               onClick={() => {
-                navigate("/login");
+                navigate("/");
               }}
             >
               로그인

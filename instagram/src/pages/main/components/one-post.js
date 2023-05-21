@@ -12,11 +12,12 @@ import {
 import { useState } from "react";
 import userInfo from "../../../data/user-info.json";
 import OneReview from "./one-review";
+import { useOpenModal } from "../context/open-modal";
 
 const OnePost = (props) => {
   const { post } = props;
 
-  // 이미지
+  // 이미지 슬라이드
   const [imageIndex, setImageIndex] = useState(0);
   const IMAGEURL = post.postImage[imageIndex];
 
@@ -29,14 +30,17 @@ const OnePost = (props) => {
     setImageIndex(imageIndex + 1);
   };
 
-  // 게시글
+  // 게시글 내용 더보기
   const [isEveryContents, setIsEveryContents] = useState(false);
   const handleShowMoreContents = () => {
     console.log("clicked");
     setIsEveryContents((prev) => !prev);
   };
 
-  // 좋아요
+  // 모달창
+  const { handleModal } = useOpenModal();
+
+  // 좋아요 개수 변화
   const [likes, setLikes] = useState(post.likesTotal);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -78,13 +82,13 @@ const OnePost = (props) => {
   return (
     <div>
       <S.PostTop>
-        <S.BasicProfile src="img/basic.jpg" />
+        <S.BasicProfile src={post.profileImage} />
         <div>
           <S.PostUser>{post.user}</S.PostUser> <span>{post.postDate} </span>{" "}
           <span>{post.postLocation}</span>
         </div>
         <S.DetailBox>
-          <FontAwesomeIcon icon={faEllipsis} />
+          <FontAwesomeIcon icon={faEllipsis} onClick={() => handleModal()} />
         </S.DetailBox>
       </S.PostTop>
       <S.ImageContainer>
@@ -172,6 +176,7 @@ const BasicProfile = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  border-radius: 50%;
 `;
 
 const DetailBox = styled.span`
@@ -191,17 +196,21 @@ const PrevButton = styled.button`
   height: 30px;
   border-radius: 50%;
   border: none;
+  background-color: lightgray;
+  opacity: 50%;
 `;
 
 const NextButton = styled.button`
   z-index: 1;
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 10px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: none;
+  background-color: lightgray;
+  opacity: 50%;
 `;
 
 const PostImage = styled.img`

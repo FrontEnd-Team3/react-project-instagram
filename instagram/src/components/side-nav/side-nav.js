@@ -21,12 +21,18 @@ const SideNav = () => {
     setState(!state);
   };
   return (
+<<<<<<< HEAD
     <S.NavUl>
       <NavinUl>
+=======
+    <>
+      <S.NavUl>
+>>>>>>> d84bd71de9c9930facc2f34f4e47e43d13cb46e2
         <li>
           <S.Img src="img/instaLogo.jpg" />
         </li>
         <li onClick={() => navigate("/")}>
+<<<<<<< HEAD
           <FontAwesomeIcon icon={faHouse} size="lg" />
           {/* 홈 */}
         </li>
@@ -61,6 +67,40 @@ const SideNav = () => {
       </NavinUl>
       <NavinDiv>{state && <Search />}</NavinDiv>
     </S.NavUl>
+=======
+          <FontAwesomeIcon icon={faHouse} />홈
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          검색
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faCompass} />
+          탐색 탭
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faClapperboard} />
+          릴스
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faPaperPlane} />
+          메시지
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faHeart} />
+          알림
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faSquarePlus} />
+          만들기
+        </li>
+        <li onClick={() => navigate("/human")}>
+          <S.ProfileImage src="img/profileImage.jpg" />
+          프로필
+        </li>
+      </S.NavUl>
+    </>
+>>>>>>> d84bd71de9c9930facc2f34f4e47e43d13cb46e2
   );
 };
 
