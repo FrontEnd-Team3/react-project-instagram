@@ -9,10 +9,6 @@ import Profile from "./pages/profile/profile";
 import LoginAndUserStoreProvider from "./context/login-and-user-context";
 
 function App() {
-  const userInfos = require("./data/user-login-info.json");
-  const [userInfo, setUserInfo] = useState(userInfos.UserInfos);
-  //JSON데이터 가져와서 useInfo state에 저장
-
   const [loginState, setLoginState] = useState(null);
   return (
     <LoginAndUserStoreProvider>
@@ -21,24 +17,13 @@ function App() {
           <Route
             path="/"
             element={
-              loginState ? (
-                <Layout username={loginState.username} />
-              ) : (
-                // 나중에 여기에 있는거 지우기! TODO
-                <Login setLoginState={setLoginState} userInfo={userInfo} />
-              )
+              loginState ? <Layout /> : <Login setLoginState={setLoginState} />
             }
           >
             <Route index element={<Main />}></Route>
-            <Route
-              path=":username"
-              element={<Profile profileInfo={loginState} />}
-            ></Route>
+            <Route path="/:username" element={<Profile />}></Route>
           </Route>
-          <Route
-            path="/emailsignup"
-            element={<Signup userInfo={userInfo} setUserInfo={setUserInfo} />}
-          />
+          <Route path="/emailsignup" element={<Signup />} />
         </Routes>
       </Router>
     </LoginAndUserStoreProvider>
