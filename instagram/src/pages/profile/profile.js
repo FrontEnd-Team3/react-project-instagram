@@ -58,10 +58,9 @@ const Profile = () => {
         </div>
       </PostsNavContainer>
       <ProfilePostsContainer>
-        <PostImg src="img/post-placeholder.jpg" alt="" />
-        {/* {postList.posts.map((postInfo) => (
+        {postList.posts.map((postInfo) => (
           <SquarePostItem postInfo={postInfo}></SquarePostItem>
-        ))} */}
+        ))}
       </ProfilePostsContainer>
     </ProfileMain>
   );
