@@ -145,7 +145,7 @@ const Search = () => {
           {!showConnect && allClean && (
             <SearchList searchList={searchList} setSerachList={setSearchList} />
           )}
-          {showConnect && moreClean && (
+          {!showConnect || moreClean || (
             <ConnectList
               connectList={connectList}
               setConnectList={setConnectList}

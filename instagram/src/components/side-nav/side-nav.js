@@ -11,63 +11,63 @@ import {
   faHeart,
   faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLoginAndUserStore } from "../../context/login-and-user-context";
 import Search from "../search/search";
+import { useLoginAndUserStore } from "../../context/login-and-user-context";
 
 const SideNav = () => {
   const navigate = useNavigate();
   const [state, setState] = useState(false);
+
+  const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
+
   const onClose = () => {
     setState(!state);
   };
-  const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
 
-  const SideNav = () => {
-    const navigate = useNavigate();
-
-    return (
-      <S.NavUl>
-        <NavinUl>
-          <li>
-            <S.Img src="img/instaLogo.jpg" />
-          </li>
-          <li onClick={() => navigate("/")}>
-            <FontAwesomeIcon icon={faHouse} size="lg" />
-            {/* 홈 */}
-          </li>
-          <li onClick={onClose}>
-            <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-            {/* 검색 */}
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faCompass} size="lg" />
-            {/* 탐색 탭 */}
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faClapperboard} size="lg" />
-            {/* 릴스 */}
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faPaperPlane} size="lg" />
-            {/* 메시지 */}
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faHeart} size="lg" />
-            {/* 알림 */}
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faSquarePlus} size="lg" />
-            {/* 만들기 */}
-          </li>
-          <li onClick={() => navigate(`/${loginAndUser.currUser.id}`)}>
-            <S.ProfileImage src="img/profileImage.jpg" />
-            프로필
-          </li>
-        </NavinUl>
-      </S.NavUl>
-    );
-  };
+  return (
+    <S.NavUl>
+      <NavinUl>
+        <li>
+          <S.Img src="img/instaLogo.jpg" />
+        </li>
+        <li onClick={() => navigate("/")}>
+          <FontAwesomeIcon icon={faHouse} size="lg" />
+          {/* 홈 */}
+        </li>
+        <li onClick={onClose}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+          {/* 검색 */}
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faCompass} size="lg" />
+          {/* 탐색 탭 */}
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faClapperboard} size="lg" />
+          {/* 릴스 */}
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faPaperPlane} size="lg" />
+          {/* 메시지 */}
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faHeart} size="lg" />
+          {/* 알림 */}
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faSquarePlus} size="lg" />
+          {/* 만들기 */}
+        </li>
+        <li onClick={() => navigate(`/${loginAndUser.currUser.id}`)}>
+          <S.ProfileImage src="img/profileImage.jpg" />
+          {/* 프로필 */}
+        </li>
+      </NavinUl>
+      <NavinDiv>{state && <Search />}</NavinDiv>
+    </S.NavUl>
+  );
 };
+
 export default SideNav;
 
 const NavUl = styled.ul`
@@ -75,6 +75,7 @@ const NavUl = styled.ul`
   width: 300px;
   position: relative;
   z-index: 1;
+  border: 1px;
 `;
 
 const NavinUl = styled.ul`
