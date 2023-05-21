@@ -1,39 +1,54 @@
 {
   "UserInfos": [
     {
-      "name": "함정수",
+      "name": "함정우",
       "id": "ham",
       "number": "0101111",
       "email": "ham@ham.com",
-      "password": "ham1234"
+      "password": "ham1234",
+      "Posts": 100,
+      "Follow": 123456,
+      "Following": 456
     },
     {
       "name": "오현우",
       "id": "oh",
       "number": "0102222",
       "email": "oh@oh.com",
-      "password": "oh1234"
+      "password": "oh1234",
+      "posts": 100,
+      "follow": 123456,
+      "following": 456
     },
     {
       "name": "박희수",
       "id": "park",
       "number": "0103333",
       "email": "park@park.com",
-      "password": "park1234"
+      "password": "park1234",
+      "posts": 100,
+      "follow": 123456,
+      "following": 456
     },
     {
       "name": "지성경",
       "id": "ji",
       "number": "0105555",
       "email": "ji@ji.com",
-      "password": "ji1234"
+      "password": "ji1234",
+      "posts": 100,
+      "follow": 123456,
+      "following": 456
     },
     {
       "name": "윤승빈",
       "id": "yun",
       "number": "0106666",
       "email": "yun@yun.com",
-      "password": "yun1234"
+      "password": "yun1234",
+      "posts": 100,
+      "follow": 123456,
+      "following": 456
     }
   ]
 }
