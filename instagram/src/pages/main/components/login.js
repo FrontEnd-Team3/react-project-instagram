@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import {
+  LOGIN_ATTEMPT,
+  useLoginAndUserStore,
+} from "../../../context/login-and-user-context";
 
 const Login = ({ setLoginState, userInfo }) => {
   const navigate = useNavigate();
@@ -21,27 +25,19 @@ const Login = ({ setLoginState, userInfo }) => {
   };
   //input값 state에 담기
 
-  const handleLogin = () => {
-    const CorrectUserId = userInfo.find((user) => user.id === firstInputValue);
-    const CorrectUserNumber = userInfo.find(
-      (user) => user.number === firstInputValue
-    );
-    const CorrectUserEmail = userInfo.find(
-      (user) => user.email === firstInputValue
-    );
-    const CorrectUserPassword = userInfo.find(
-      (user) => user.password === passwordInputValue
-    );
+  const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
 
-    if (
-      (CorrectUserId || CorrectUserNumber || CorrectUserEmail) &&
-      CorrectUserPassword
-    ) {
-      setLoginState(true);
-    } else {
-      alert("아이디와 비밀번호를 확인해주세요");
-    }
+  const handleLogin = () => {
+    loginAndUserDispatch(
+      LOGIN_ATTEMPT({ firstInputValue, passwordInputValue })
+    );
   };
+  useEffect(() => {
+    if (loginAndUser.currUser === null) return;
+    if (Object.keys(loginAndUser.currUser).length === 0)
+      return alert("아이디와 비밀번호를 확인해주세요");
+    setLoginState(true);
+  }, [loginAndUser.currUser]);
 
   return (
     <Main>
