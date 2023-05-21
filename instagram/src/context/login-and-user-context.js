@@ -25,7 +25,7 @@ const initialUserList = require("../data/user-login-info.json").UserInfos;
  *
  * 사용법(개발한 방법에는 관심 없으신 분들이나, 사용 방법을 빨리 알고 싶으신 분들은 여기부터)
  *
- * USER_ADD, USER_REMOVE, LOGIN_ATTEMPT, LOGOUT이라는 4가지 기능이 있다.
+ * USER_ADD, USER_REMOVE, LOGIN_ATTEMPT, LOGOUT이라는 4가지 액션 타입이 있다.
  *
  * 이것을 쓰는 방법은 다음과 같다.
  *
@@ -36,7 +36,7 @@ const initialUserList = require("../data/user-login-info.json").UserInfos;
  *
  * loginAndUserDispatch(USER_ADD({name: "박희수", id: "park", number: "0103333", email: "park@park.com", password: "park1234"}))
  *
- * 해딩 회원 정보를 가진 회원을 추가한다.
+ * 해당 회원 정보를 가진 회원을 추가한다.
  *
  * loginAndUserDispatch(USER_REMOVE("oh"))
  *
@@ -103,7 +103,7 @@ const loginAndUserReducer = (state, action) => {
       ) {
         return { ...state, currUser: userList[CorrectUserPassword] };
       } else {
-        return { ...state, currUser: null };
+        return { ...state, currUser: {} };
       }
     case "LOGOUT":
       return { ...state, currUser: null };

@@ -33,16 +33,10 @@ const Login = ({ setLoginState, userInfo }) => {
     );
   };
   useEffect(() => {
-    if (loginAndUser.currUser) {
-      setLoginState(true);
-    }
-    // 빈 객체라면. 로그인 실패 시 빈 객체가 됨.
-    if (
-      loginAndUser.currUser !== null &&
-      Object.keys(loginAndUser.currUser).length === 0
-    ) {
-      alert("아이디와 비밀번호를 확인해주세요");
-    }
+    if (loginAndUser.currUser === null) return;
+    if (Object.keys(loginAndUser.currUser).length === 0)
+      return alert("아이디와 비밀번호를 확인해주세요");
+    setLoginState(true);
   }, [loginAndUser.currUser]);
 
   return (
