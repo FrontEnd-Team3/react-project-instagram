@@ -7,6 +7,7 @@ import Signup from "./pages/main/components/signup";
 import { useState } from "react";
 import Profile from "./pages/profile/profile";
 import LoginAndUserStoreProvider from "./context/login-and-user-context";
+import SerachProfile from "./pages/searchprofile/searchprofile";
 
 function App() {
   const [loginState, setLoginState] = useState(null);
@@ -24,6 +25,7 @@ function App() {
             <Route path="/:username" element={<Profile />}></Route>
           </Route>
           <Route path="/emailsignup" element={<Signup />} />
+          <Route path="/searchprofile" element={<SerachProfile />} />
         </Routes>
       </Router>
     </LoginAndUserStoreProvider>

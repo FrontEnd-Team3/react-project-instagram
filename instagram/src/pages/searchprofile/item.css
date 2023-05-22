@@ -1,0 +1,23 @@
+#explain {
+  opacity: 0;
+}
+
+#hover1:hover #explain {
+  opacity: 1;
+}
+
+#explain2 {
+  opacity: 0;
+}
+
+#hover1:hover #explain2 {
+  opacity: 1;
+}
+
+#explain3 {
+  opacity: 0;
+}
+
+#hover1:hover #explain3 {
+  opacity: 1;
+}

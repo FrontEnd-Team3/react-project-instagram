@@ -1,17 +1,19 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const ConnectOne = ({ value, setCleanConnect }) => {
-  const { id, count, url } = value;
+  const { id, name, url } = value;
+  const navigate = useNavigate();
 
   return (
     <OneDiv>
-      <OneList>
+      <OneList onClick={() => navigate("/searchprofile")}>
         <div>
           <Image src={url}></Image>
         </div>
         <ListinUl>
           <li>{id}</li>
-          <li>{count}</li>
+          <li>{name}</li>
         </ListinUl>
         <Button onClick={() => setCleanConnect(id)}>x</Button>
       </OneList>
@@ -32,7 +34,7 @@ const OneList = styled.ul`
   width: 300px;
   height: 37px;
   list-style: none;
-  /* border: 1px solid black; */
+
   margin-top: 20px;
   display: flex;
 `;
@@ -44,11 +46,10 @@ const OneDiv = styled.div`
 
 const ListinUl = styled.ul`
   list-style: none;
-
+  cursor: pointer;
   position: relative;
   right: 35px;
   li {
-    /* border: 1px solid black; */
     width: 150px;
     font-size: 11px;
     position: relative;

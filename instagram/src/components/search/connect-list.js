@@ -6,11 +6,10 @@ const SearchList = ({ connectList, setConnectList }) => {
     setConnectList(filterList);
   };
 
-
   return (
     <>
-      {connectList.map((value, index) => (
-        <ConnectOne value={value} index = {index} setCleanConnect={setCleanConnect}/>
+      {connectList.map((value) => (
+        <ConnectOne value={value} setCleanConnect={setCleanConnect} />
       ))}
     </>
   );
