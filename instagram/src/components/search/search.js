@@ -5,8 +5,6 @@ import SearchList from "./search-list";
 import ConnectList from "./connect-list";
 
 const Search = () => {
-  const [showConnect, setShowConnect] = useState(false);
-
   const [searchList, setSearchList] = useState([
     {
       id: "Ddanghuni",
@@ -38,62 +36,62 @@ const Search = () => {
   const [connectList, setConnectList] = useState([
     {
       id: "#고양이짤",
-      count: "게시물 1239",
+      name: "게시물 1239",
       url: "img/cat1.jpg",
     },
     {
       id: "#고양이짤방",
-      count: "게시물 678",
+      name: "게시물 678",
       url: "img/cat2.jpg",
     },
     {
       id: "#고양이짤저장소",
-      count: "게시물 434",
+      name: "게시물 434",
       url: "img/cat3.jpg",
     },
     {
       id: "#고양이짤그림",
-      count: "게시물 231",
+      name: "게시물 231",
       url: "img/cat4.jpg",
     },
     {
       id: "#강아지짤저장소",
-      count: "게시물 1239",
+      name: "게시물 1239",
       url: "img/dog1.jpg",
     },
     {
       id: "#고릴라짤저장소",
-      count: "게시물 1239",
+      name: "게시물 1239",
       url: "img/rilra1.jpg",
     },
     {
       id: "#강아지사랑해",
-      count: "게시물 1239",
+      name: "게시물 1239",
       url: "img/dog2.jpg",
     },
     {
       id: "#고양이짤만화",
-      count: "게시물 123",
+      name: "게시물 123",
       url: "img/cat5.jpg",
     },
     {
       id: "#토끼짤저장소",
-      count: "게시물 234",
+      name: "게시물 234",
       url: "img/rabbit1.jpg",
     },
     {
       id: "#고양이짤그림",
-      count: "게시물 88",
+      name: "게시물 88",
       url: "img/cat6.jpg",
     },
     {
       id: "#고양이짤타투",
-      count: "게시물 13",
+      name: "게시물 13",
       url: "img/cat7.jpg",
     },
     {
       id: "#고양이짤툰",
-      count: "게시물 4",
+      name: "게시물 4",
       url: "img/cat8.jpg",
     },
   ]);
@@ -104,26 +102,32 @@ const Search = () => {
     const filterList = _connectList.filter(
       (todo) => todo.id === e.target.user.value
     );
-    setConnectList(filterList);
+    setConnectList([...filterList, ...connectList]);
+    setSearchList([...filterList, ...searchList]);
   };
+
+  console.log(searchList);
+  const [showConnect, setShowConnect] = useState(false);
 
   const onChangeInput = (e) => {
     setShowConnect(true);
     if (e.target.value === "") {
       setShowConnect(false);
+    } else if (moreClean === false) {
+      setMoreClean(true);
     }
   };
 
   const [allClean, setAllClean] = useState(true);
-  const [moreClean, setMoreClean] = useState(false);
+  const [moreClean, setMoreClean] = useState(true);
 
   const onCleanList = () => {
     setAllClean(false);
-    setMoreClean(true)
+    if (allClean === false) {
+      setMoreClean(false);
+    }
   };
-  const onCleanConnect = () => {
-    setMoreClean(false);
-  };
+
   return (
     <>
       <S.Form onSubmit={handlefindList}>
@@ -138,14 +142,13 @@ const Search = () => {
         <Hr />
         <S.List>
           <li>최근 검색 항목</li>
-          {allClean && <li onClick={onCleanList}>모두 지우기</li>}
-          {moreClean && <li onClick={onCleanConnect}>모두 지우기</li>}
+          <li onClick={onCleanList}>모두 지우기</li>
         </S.List>
         <ul>
           {!showConnect && allClean && (
             <SearchList searchList={searchList} setSerachList={setSearchList} />
           )}
-          {!showConnect || moreClean || (
+          {showConnect && moreClean && (
             <ConnectList
               connectList={connectList}
               setConnectList={setConnectList}

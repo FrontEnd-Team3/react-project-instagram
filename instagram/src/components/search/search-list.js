@@ -6,11 +6,14 @@ const SearchList = ({ searchList, setSerachList }) => {
     setSerachList(filterList);
   };
 
-
   return (
     <>
       {searchList.map((value, index) => (
-        <SearchOne value={value} index = {index} setCleanSearch = {setCleanSearch}/>
+        <SearchOne
+          value={value}
+          index={index}
+          setCleanSearch={setCleanSearch}
+        />
       ))}
     </>
   );
