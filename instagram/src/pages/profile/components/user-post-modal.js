@@ -7,7 +7,8 @@ import {
   faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { CLOSE_POST, useCurrentPost } from "../context/current-post";
-import OneSentence from "./one-sentence";
+import OriginalPost from "./original-post";
+import OneReview from "./one-review";
 
 const UserPostModal = () => {
   // 이거 고치기
@@ -19,7 +20,10 @@ const UserPostModal = () => {
         <S.ModalContainer>
           <S.Picture imgSrc={currPost.postImage[0]} />
           <div>
-            <OneSentence post={currPost} />
+            <OriginalPost post={currPost} />
+            {currPost.reviews.map((review) => (
+              <OneReview post={review} />
+            ))}
           </div>
         </S.ModalContainer>
       </>

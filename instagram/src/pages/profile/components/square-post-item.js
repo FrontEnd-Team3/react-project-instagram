@@ -3,7 +3,6 @@ import { SET_POST, useCurrentPost } from "../context/current-post";
 
 const SquarePostItem = ({ postInfo }) => {
   const [currPost, currPostDispatch] = useCurrentPost();
-  console.log(postInfo);
   return (
     <SquarePostContainer postInfo={postInfo}>
       <ShadowBox onClick={() => currPostDispatch(SET_POST(postInfo))}>

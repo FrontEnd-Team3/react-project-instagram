@@ -12,28 +12,8 @@ import {
 import { useState } from "react";
 import userInfo from "../../../data/user-info.json";
 
-const OneSentence = (props) => {
+const OneReview = (props) => {
   const { post } = props;
-
-  // 이미지 슬라이드
-  const [imageIndex, setImageIndex] = useState(0);
-  const IMAGEURL = post.postImage[imageIndex];
-
-  const handlePrevMove = () => {
-    if (!post.postImage[imageIndex - 1]) return;
-    setImageIndex(imageIndex - 1);
-  };
-  const handleNextMove = () => {
-    if (!post.postImage[imageIndex + 1]) return;
-    setImageIndex(imageIndex + 1);
-  };
-
-  // 게시글 내용 더보기
-  const [isEveryContents, setIsEveryContents] = useState(false);
-  const handleShowMoreContents = () => {
-    console.log("clicked");
-    setIsEveryContents((prev) => !prev);
-  };
 
   // 모달창
 
@@ -57,7 +37,7 @@ const OneSentence = (props) => {
   };
 
   // 댓글 추가
-  const [reviewList, setReviewList] = useState(post.reviews);
+  const [reviewList, setReviewList] = useState(post.replies);
   const [reviewCount, setReviewCount] = useState(reviewList.length);
 
   const handleReviewList = (event) => {
@@ -76,92 +56,70 @@ const OneSentence = (props) => {
     setReviewList(newReviewList);
   };
 
-  return (
-    <S.PostWrapper>
+  /** 이렇게 하면 맨 위에 완성. @TODO 다른 컴포넌트로 빼기
+   *     <S.PostWrapper>
       <S.PostTop>
         <S.BasicProfile src={post.profileImage} />
         <div>
-          <S.PostUser>{post.user}</S.PostUser> <span>{post.postDate} </span>{" "}
-          <span>{post.postLocation}</span>
+          <S.PostUser>{post.user}</S.PostUser>
         </div>
         <S.DetailBox>
           <FontAwesomeIcon icon={faEllipsis} />
         </S.DetailBox>
       </S.PostTop>
-      <div></div>
-      <div>
-        <S.PostButton>
-          <FontAwesomeIcon
-            icon={faHeart}
-            onClick={handleLikes}
-            style={{ color: isClicked ? "red" : "black" }}
-          />
-        </S.PostButton>
-        <S.PostButton>
-          <FontAwesomeIcon icon={faComment} />
-        </S.PostButton>
-        <S.PostButton>
-          <FontAwesomeIcon icon={faPaperPlane} />
-        </S.PostButton>
-        <S.BookmarkButton>
-          <FontAwesomeIcon icon={faBookmark} />
-        </S.BookmarkButton>
-      </div>
-      <h4>좋아요{likes}개 </h4>
-      <div>
-        <S.PostUser>{post.user}</S.PostUser>
-        <S.PostContent
-          style={{
-            overflow: isEveryContents ? "visible" : "hidden",
-            whiteSpace: isEveryContents ? "normal" : "nowrap",
-          }}
-        >
-          {post.postContent}
-        </S.PostContent>
-        <div>
-          <S.ShowMoreButton onClick={handleShowMoreContents}>
-            {isEveryContents ? "줄이기" : "더보기"}
-          </S.ShowMoreButton>
-        </div>
-      </div>
-      <div>
-        <S.ShowMoreButton
-          style={{ marginTop: "10px" }}
-          onClick={handleShowMoreComments}
-        >
-          {isEveryComments ? "줄이기" : `댓글${reviewCount}개 모두 보기`}
-        </S.ShowMoreButton>
-      </div>
-      <form onSubmit={handleReviewList}>
-        <S.Comments style={{ height: isEveryComments ? "auto" : "22px" }}>
-          {/* {reviewList.map((review, i) => (
-            <OneReview key={i} review={review} />
-          ))} */}
-        </S.Comments>
-        <div>
-          <S.ReplyBox placeholder="댓글 달기..." name="reply" />
-        </div>
-      </form>
+      </S.PostWrapper>
+   */
 
-      <hr />
+  return (
+    <S.PostWrapper>
+      {console.log(post)}
+      <div>
+        <S.OneSentenceContainer>
+          <S.BasicProfile src={post.profileImage} />
+          <S.PostContent
+            style={{
+              overflow: "visible",
+              whiteSpace: "normal",
+            }}
+          >
+            <S.PostUser>{post.reviewer}</S.PostUser>
+            {post.reviewContent}
+            <div></div>
+            <S.ShowMoreButton
+              style={{ marginTop: "10px" }}
+              onClick={handleShowMoreComments}
+            >
+              {reviewCount
+                ? isEveryComments
+                  ? "----    답글 숨기기"
+                  : `----    답글 보기 (${reviewCount}개)`
+                : null}
+            </S.ShowMoreButton>
+          </S.PostContent>
+        </S.OneSentenceContainer>
+      </div>
     </S.PostWrapper>
   );
 };
 
-export default OneSentence;
+export default OneReview;
 
 const PostWrapper = styled.div`
   margin: 20px;
 `;
 
+const OneSentenceContainer = styled.div`
+  display: flex;
+`;
+
 const PostTop = styled.div`
   display: flex;
-  width: 400px;
   align-items: center;
 `;
 
-const PostUser = styled.h5`
-  margin: 0px;
+const PostUser = styled.span`
+  font-weight: 700;
+  margin-right: 10px;
 `;
 
 const BasicProfile = styled.img`
@@ -220,7 +178,7 @@ const BookmarkButton = styled.span`
 `;
 
 const PostContent = styled.div`
-  width: 400px;
+  /* width: 400px; */
   padding: 0px;
   text-overflow: ellipsis;
 `;
@@ -245,6 +203,7 @@ const ReplyBox = styled.input`
 
 const S = {
   PostWrapper,
+  OneSentenceContainer,
   PostTop,
   PostUser,
   BasicProfile,

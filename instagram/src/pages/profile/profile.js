@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useLoginAndUserStore } from "../../context/login-and-user-context";
-import postList from "../../data/post-list.json";
+import postList from "../../data/user-post-info.json";
 import SquarePostItem from "./components/square-post-item";
 import UserPostModal from "./components/user-post-modal";
 import CurrentPostProvider from "./context/current-post";
