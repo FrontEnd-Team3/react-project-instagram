@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useLoginAndUserStore } from "../../context/login-and-user-context";
-import postList from "../../data/post-list.json";
+import postList from "../../data/user-post-info.json";
 import SquarePostItem from "./components/square-post-item";
+import UserPostModal from "./components/user-post-modal";
+import CurrentPostProvider from "./context/current-post";
 /**
  *
- * @TODO S 객체 만들기
+ * @TODO S 객체 만들기, 파일 나누기
  */
 const Profile = () => {
   const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
@@ -16,53 +18,56 @@ const Profile = () => {
     return <p>데이터가 잘못되었습니다.</p>;
 
   return (
-    <ProfileMain>
-      <ProfileContainer>
-        <div>
-          <ProfileImg src="img/default-profile.jpg" alt="" width="150px" />
-        </div>
-        <InfoContainer>
-          <h2>{currUser.id}</h2>
-          <Numbers>
-            <div>
-              게시물 <strong>{currUser.posts}</strong>
-            </div>
-            <div>
-              팔로워 <strong>{currUser.follow}</strong>
-            </div>
-            <div>
-              팔로우 <strong>{currUser.following}</strong>
-            </div>
-          </Numbers>
-          <h4>{currUser.name}</h4>
-        </InfoContainer>
-      </ProfileContainer>
-      <PostsNavContainer>
-        <div
-          className={navState === 0 ? "selected" : ""}
-          onClick={() => setNavState(0)}
-        >
-          게시물
-        </div>
-        <div
-          className={navState === 1 ? "selected" : ""}
-          onClick={() => setNavState(1)}
-        >
-          릴스
-        </div>
-        <div
-          className={navState === 2 ? "selected" : ""}
-          onClick={() => setNavState(2)}
-        >
-          태그됨
-        </div>
-      </PostsNavContainer>
-      <ProfilePostsContainer>
-        {postList.posts.map((postInfo) => (
-          <SquarePostItem postInfo={postInfo}></SquarePostItem>
-        ))}
-      </ProfilePostsContainer>
-    </ProfileMain>
+    <CurrentPostProvider>
+      <UserPostModal />
+      <ProfileMain>
+        <ProfileContainer>
+          <div>
+            <ProfileImg src="img/default-profile.jpg" alt="" width="150px" />
+          </div>
+          <InfoContainer>
+            <h2>{currUser.id}</h2>
+            <Numbers>
+              <div>
+                게시물 <strong>{currUser.posts}</strong>
+              </div>
+              <div>
+                팔로워 <strong>{currUser.follow}</strong>
+              </div>
+              <div>
+                팔로우 <strong>{currUser.following}</strong>
+              </div>
+            </Numbers>
+            <h4>{currUser.name}</h4>
+          </InfoContainer>
+        </ProfileContainer>
+        <PostsNavContainer>
+          <div
+            className={navState === 0 ? "selected" : ""}
+            onClick={() => setNavState(0)}
+          >
+            게시물
+          </div>
+          <div
+            className={navState === 1 ? "selected" : ""}
+            onClick={() => setNavState(1)}
+          >
+            릴스
+          </div>
+          <div
+            className={navState === 2 ? "selected" : ""}
+            onClick={() => setNavState(2)}
+          >
+            태그됨
+          </div>
+        </PostsNavContainer>
+        <ProfilePostsContainer>
+          {postList.posts.map((postInfo) => (
+            <SquarePostItem postInfo={postInfo}></SquarePostItem>
+          ))}
+        </ProfilePostsContainer>
+      </ProfileMain>
+    </CurrentPostProvider>
   );
 };
 export default Profile;

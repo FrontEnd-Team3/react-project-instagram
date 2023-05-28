@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { SET_POST, useCurrentPost } from "../context/current-post";
 
 const SquarePostItem = ({ postInfo }) => {
-  console.log(postInfo);
+  const [currPost, currPostDispatch] = useCurrentPost();
   return (
     <SquarePostContainer postInfo={postInfo}>
-      <ShadowBox>
+      <ShadowBox onClick={() => currPostDispatch(SET_POST(postInfo))}>
         {postInfo.likesTotal} {postInfo.reviews.length}
       </ShadowBox>
     </SquarePostContainer>
