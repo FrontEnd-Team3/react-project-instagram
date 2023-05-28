@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useLoginAndUserStore } from "../../context/login-and-user-context";
-import postList from "../../data/user-post-info.json";
 import SquarePostItem from "./components/square-post-item";
 import UserPostModal from "./components/user-post-modal";
 import CurrentPostProvider from "./context/current-post";
+import { useUserPosts } from "./context/user-posts";
 /**
  *
  * @TODO S 객체 만들기, 파일 나누기
@@ -13,7 +13,12 @@ const Profile = () => {
   const [loginAndUser, loginAndUserDispatch] = useLoginAndUserStore();
   const [navState, setNavState] = useState(0);
   const currUser = loginAndUser.currUser;
-  console.log();
+  const [userPosts, userPostsDispatch] = useUserPosts();
+  console.log(
+    userPosts.map((postInfo, index) => (
+      <SquarePostItem postInfo={postInfo} index={index}></SquarePostItem>
+    ))
+  );
   if (currUser === null || Object.keys(currUser).length === 0)
     return <p>데이터가 잘못되었습니다.</p>;
 
@@ -62,8 +67,8 @@ const Profile = () => {
           </div>
         </PostsNavContainer>
         <ProfilePostsContainer>
-          {postList.posts.map((postInfo) => (
-            <SquarePostItem postInfo={postInfo}></SquarePostItem>
+          {userPosts.map((postInfo, index) => (
+            <SquarePostItem postInfo={postInfo} index={index}></SquarePostItem>
           ))}
         </ProfilePostsContainer>
       </ProfileMain>

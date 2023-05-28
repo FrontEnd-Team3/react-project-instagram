@@ -11,21 +11,24 @@ import OriginalPost from "./original-post";
 import OneReview from "./one-review";
 import OriginalPosterInfo from "./original-poster-info";
 import AddReview from "./add-review";
+import { useUserPosts } from "../context/user-posts";
 
 const UserPostModal = () => {
   // 이거 고치기
   const [currPost, currPostDispatch] = useCurrentPost();
-  if (Object.keys(currPost).length !== 0) {
+  const [userPosts, userPostsDispatch] = useUserPosts();
+  const currPostInfo = userPosts[currPost]
+  if (currPost !== -1) {
     return (
       <>
         <S.Wrapper onClick={() => currPostDispatch(CLOSE_POST())}></S.Wrapper>
         <S.ModalContainer>
-          <S.Picture imgSrc={currPost.postImage[0]} />
+          <S.Picture imgSrc={currPostInfo.postImage[0]} />
           <div>
-            <OriginalPosterInfo post={currPost} />
-            <S.PostsContainer style={{ height: "460px", overflow: "auto" }}>
-              <OriginalPost post={currPost} />
-              {currPost.reviews.map((review) => (
+            <OriginalPosterInfo post={currPostInfo} />
+            <S.PostsContainer style={{ height: "430px", overflow: "auto" }}>
+              <OriginalPost post={currPostInfo} />
+              {currPostInfo.reviews.map((review) => (
                 <OneReview post={review} />
               ))}
             </S.PostsContainer>
@@ -50,7 +53,7 @@ const Wrapper = styled.div`
 const ModalContainer = styled.div`
   z-index: 1001;
   max-height: 550px;
-  min-width: 1000px;
+  min-width: 1100px;
   position: fixed;
   top: 50%;
   left: 50%;

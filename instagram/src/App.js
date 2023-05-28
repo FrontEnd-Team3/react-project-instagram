@@ -5,9 +5,10 @@ import Login from "./pages/main/components/login";
 import Main from "./pages/main/index";
 import Signup from "./pages/main/components/signup";
 import { useState } from "react";
-import Profile from "./pages/profile/profile";
+import Profile from "./pages/profile/index";
 import LoginAndUserStoreProvider from "./context/login-and-user-context";
 import SerachProfile from "./pages/searchprofile/searchprofile";
+import UserPostsProvider from "./pages/profile/context/user-posts";
 
 function App() {
   const [loginState, setLoginState] = useState(null);
@@ -22,7 +23,14 @@ function App() {
             }
           >
             <Route index element={<Main />}></Route>
-            <Route path="/:username" element={<Profile />}></Route>
+            <Route
+              path="/:username"
+              element={
+                <UserPostsProvider>
+                  <Profile />
+                </UserPostsProvider>
+              }
+            ></Route>
           </Route>
           <Route path="/emailsignup" element={<Signup />} />
           <Route path="/searchprofile" element={<SerachProfile />} />
