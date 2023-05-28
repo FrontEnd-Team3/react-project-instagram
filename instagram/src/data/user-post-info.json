@@ -21,12 +21,12 @@
           "state": false,
           "replies": [
             {
-              "reviewer": "CozyCat 🐱",
+              "replier": "CozyCat 🐱",
               "profileImage": "img/user/user_1.jpg",
-              "reviewDate": "2023.05.18",
-              "reviewLocation": "Seoul, Korea",
+              "replyDate": "2023.05.18",
+              "replyLocation": "Seoul, Korea",
               "likesTotal": 45,
-              "reviewContent": "She is so cute.",
+              "replyContent": "She is so cute.",
               "state": false
             }
           ]

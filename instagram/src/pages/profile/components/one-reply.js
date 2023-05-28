@@ -17,18 +17,18 @@ import userInfo from "../../../data/user-info.json";
 const OneReply = (props) => {
   const { post, parentWriter } = props;
 
-  // 이미지 슬라이드
-  const [imageIndex, setImageIndex] = useState(0);
-  const IMAGEURL = post.postImage[imageIndex];
+  // // 이미지 슬라이드
+  // const [imageIndex, setImageIndex] = useState(0);
+  // const IMAGEURL = post.postImage[imageIndex];
 
-  const handlePrevMove = () => {
-    if (!post.postImage[imageIndex - 1]) return;
-    setImageIndex(imageIndex - 1);
-  };
-  const handleNextMove = () => {
-    if (!post.postImage[imageIndex + 1]) return;
-    setImageIndex(imageIndex + 1);
-  };
+  // const handlePrevMove = () => {
+  //   if (!post.postImage[imageIndex - 1]) return;
+  //   setImageIndex(imageIndex - 1);
+  // };
+  // const handleNextMove = () => {
+  //   if (!post.postImage[imageIndex + 1]) return;
+  //   setImageIndex(imageIndex + 1);
+  // };
 
   // 모달창
 
@@ -52,48 +52,28 @@ const OneReply = (props) => {
   };
 
   // 댓글 추가
-  const [reviewList, setReviewList] = useState(post.reviews);
-  const [reviewCount, setReviewCount] = useState(reviewList.length);
+  // const [reviewList, setReviewList] = useState(post.reviews);
+  // const [reviewCount, setReviewCount] = useState(reviewList.length);
 
-  const handleReviewList = (event) => {
-    event.preventDefault();
-    const newReviewContent = event.target.reply.value;
-    const newReview = {
-      reviewer: `${userInfo.Users[0].Username}`,
-      reviewContent: newReviewContent,
-      state: false,
-    };
+  // const handleReviewList = (event) => {
+  //   event.preventDefault();
+  //   const newReviewContent = event.target.reply.value;
+  //   const newReview = {
+  //     reviewer: `${userInfo.Users[0].Username}`,
+  //     reviewContent: newReviewContent,
+  //     state: false,
+  //   };
 
-    const newReviewList = [...reviewList];
-    newReviewList.push(newReview);
-    setReviewCount(reviewCount + 1);
+  //   const newReviewList = [...reviewList];
+  //   newReviewList.push(newReview);
+  //   setReviewCount(reviewCount + 1);
 
-    setReviewList(newReviewList);
-  };
+  //   setReviewList(newReviewList);
+  // };
 
-  /** 이렇게 하면 맨 위에 완성
-   *     <S.PostWrapper>
-      <S.PostTop>
-        <S.BasicProfile src={post.profileImage} />
-        <div>
-          <S.PostUser>{post.user}</S.PostUser>
-        </div>
-        <S.DetailBox>
-          <FontAwesomeIcon icon={faEllipsis} />
-        </S.DetailBox>
-      </S.PostTop>
-      </S.PostWrapper>
-   */
   /**
    *  댓글 다는 거 빼놓음
-   *       <form onSubmit={handleReviewList}>
-        <S.Comments style={{ height: isEveryComments ? "auto" : "22px" }}>
-        </S.Comments>
-        <div>
-          <S.ReplyBox placeholder="댓글 달기..." name="reply" />
-        </div>
-      </form>
-      <hr />
+   *       
    */
 
   return (
@@ -107,9 +87,9 @@ const OneReply = (props) => {
               whiteSpace: "normal",
             }}
           >
-            <S.PostUser>{post.reviewer}</S.PostUser>
+            <S.PostUser>{post.replier}</S.PostUser>
             <S.Mention>{parentWriter}</S.Mention>
-            {post.reviewContent}
+            {post.replyContent}
           </S.PostContent>
         </S.OneSentenceContainer>
       </div>
@@ -120,7 +100,7 @@ const OneReply = (props) => {
 export default OneReply;
 
 const PostWrapper = styled.div`
-  margin: 20px;
+  margin: 20px 0;
 `;
 
 const OneSentenceContainer = styled.div`
@@ -210,7 +190,7 @@ const PostContent = styled.div`
 const ShowMoreButton = styled.button`
   border: none;
   background-color: white;
-  color: lightgray;
+  /* color: lightgray; */
   padding-left: 0px;
 `;
 

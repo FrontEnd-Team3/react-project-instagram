@@ -69,19 +69,6 @@ const OriginalPost = (props) => {
     setReviewList(newReviewList);
   };
 
-  /** 이렇게 하면 맨 위에 완성. @TODO 다른 컴포넌트로 빼기
-   *     <S.PostWrapper>
-      <S.PostTop>
-        <S.BasicProfile src={post.profileImage} />
-        <div>
-          <S.PostUser>{post.user}</S.PostUser>
-        </div>
-        <S.DetailBox>
-          <FontAwesomeIcon icon={faEllipsis} />
-        </S.DetailBox>
-      </S.PostTop>
-      </S.PostWrapper>
-   */
 
   return (
     <S.PostWrapper>
@@ -106,7 +93,7 @@ const OriginalPost = (props) => {
 export default OriginalPost;
 
 const PostWrapper = styled.div`
-  margin: 20px;
+  margin: 20px 0;
 `;
 
 const OneSentenceContainer = styled.div`

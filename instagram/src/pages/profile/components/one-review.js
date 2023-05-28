@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import userInfo from "../../../data/user-info.json";
+import OneReply from "./one-reply";
 
 const OneReview = (props) => {
   const { post } = props;
@@ -71,7 +72,7 @@ const OneReview = (props) => {
    */
 
   return (
-    <S.PostWrapper>
+    <S.PostWrapper onClick={(e) => e.preventDefault()}>
       {console.log(post)}
       <div>
         <S.OneSentenceContainer>
@@ -89,12 +90,19 @@ const OneReview = (props) => {
               style={{ marginTop: "10px" }}
               onClick={handleShowMoreComments}
             >
-              {reviewCount
-                ? isEveryComments
-                  ? "----    답글 숨기기"
-                  : `----    답글 보기 (${reviewCount}개)`
-                : null}
+              {reviewCount ? (
+                isEveryComments ? (
+                  <div>---- 답글 숨기기</div>
+                ) : (
+                  <div>---- 답글 보기 ({reviewCount}개)</div>
+                )
+              ) : null}
             </S.ShowMoreButton>
+            {isEveryComments
+              ? post.replies.map((reply) => (
+                  <OneReply post={reply} parentWriter={post.reviewer} />
+                ))
+              : null}
           </S.PostContent>
         </S.OneSentenceContainer>
       </div>
@@ -105,7 +113,7 @@ const OneReview = (props) => {
 export default OneReview;
 
 const PostWrapper = styled.div`
-  margin: 20px;
+  margin: 20px 0;
 `;
 
 const OneSentenceContainer = styled.div`
@@ -160,6 +168,7 @@ const NextButton = styled.button`
   border-radius: 50%;
   border: none;
   background-color: lightgray;
+  font: inherit;
   opacity: 50%;
 `;
 
@@ -183,10 +192,10 @@ const PostContent = styled.div`
   text-overflow: ellipsis;
 `;
 
-const ShowMoreButton = styled.button`
+const ShowMoreButton = styled.div`
   border: none;
   background-color: white;
-  color: lightgray;
+  /* color: lightgray; */
   padding-left: 0px;
 `;
 

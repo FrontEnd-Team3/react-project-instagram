@@ -9,6 +9,8 @@ import {
 import { CLOSE_POST, useCurrentPost } from "../context/current-post";
 import OriginalPost from "./original-post";
 import OneReview from "./one-review";
+import OriginalPosterInfo from "./original-poster-info";
+import AddReview from "./add-review";
 
 const UserPostModal = () => {
   // 이거 고치기
@@ -20,10 +22,14 @@ const UserPostModal = () => {
         <S.ModalContainer>
           <S.Picture imgSrc={currPost.postImage[0]} />
           <div>
-            <OriginalPost post={currPost} />
-            {currPost.reviews.map((review) => (
-              <OneReview post={review} />
-            ))}
+            <OriginalPosterInfo post={currPost} />
+            <S.PostsContainer style={{ height: "460px", overflow: "auto" }}>
+              <OriginalPost post={currPost} />
+              {currPost.reviews.map((review) => (
+                <OneReview post={review} />
+              ))}
+            </S.PostsContainer>
+            <AddReview />
           </div>
         </S.ModalContainer>
       </>
@@ -43,7 +49,7 @@ const Wrapper = styled.div`
 
 const ModalContainer = styled.div`
   z-index: 1001;
-  height: 550px;
+  max-height: 550px;
   min-width: 1000px;
   position: fixed;
   top: 50%;
@@ -70,6 +76,9 @@ const Picture = styled.div`
 `;
 const TextContainer = styled.div``;
 const ReplyContainer = styled.div``;
+const PostsContainer = styled.div`
+  overflow-y: auto;
+`;
 
 const S = {
   Wrapper,
@@ -78,4 +87,5 @@ const S = {
   Picture,
   TextContainer,
   ReplyContainer,
+  PostsContainer,
 };
