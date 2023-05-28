@@ -73,7 +73,6 @@ const OneReview = (props) => {
 
   return (
     <S.PostWrapper onClick={(e) => e.preventDefault()}>
-      {console.log(post)}
       <div>
         <S.OneSentenceContainer>
           <S.BasicProfile src={post.profileImage} />

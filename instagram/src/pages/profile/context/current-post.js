@@ -13,7 +13,7 @@ const currentPostReducer = (state, action) => {
     case "SET_POST":
       return action.payload;
     case "CLOSE_POST":
-      return {};
+      return -1;
     default:
       return state;
   }
@@ -21,7 +21,7 @@ const currentPostReducer = (state, action) => {
 
 // 글의 id 받기
 const CurrentPostProvider = ({ children }) => {
-  const [currPost, currPostDispatch] = useReducer(currentPostReducer, {});
+  const [currPost, currPostDispatch] = useReducer(currentPostReducer, -1);
   return (
     <CurrentPost.Provider value={[currPost, currPostDispatch]}>
       {children}
